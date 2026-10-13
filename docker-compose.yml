@@ -1,0 +1,14 @@
+services:
+  beam:
+    build: .
+    image: beam:latest
+    container_name: beam
+    ports:
+      - "8787:8787"
+    environment:
+      - PORT=8787
+      # - BEAM_ICE=local      # uncomment to forbid any STUN/outside contact
+    restart: unless-stopped
+    read_only: true           # it never needs to write anywhere
+    tmpfs:
+      - /tmp

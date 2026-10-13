@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=5" />
+<title>BEAM — send files device to device, no signup</title>
+<meta name="description" content="Send any file directly between two devices. No signup, no cloud, no upload. End-to-end encrypted peer-to-peer transfer that works with zero internet." />
+<meta name="theme-color" content="#05060a" />
+<meta name="color-scheme" content="dark" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="BEAM" />
+<link rel="manifest" href="/manifest.webmanifest" />
+<link rel="apple-touch-icon" href="/icons/icon-192.png" />
+<link rel="icon" href="/icons/icon-192.png" />
+<link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+<div class="bg" aria-hidden="true">
+  <div class="orb orb-a"></div>
+  <div class="orb orb-b"></div>
+  <div class="orb orb-c"></div>
+  <div class="grid"></div>
+  <div class="grain"></div>
+</div>
+
+<header class="topbar">
+  <a class="brand" href="/" data-nav="home">
+    <span class="brand-mark">
+      <svg viewBox="0 0 32 32" width="26" height="26" aria-hidden="true">
+        <defs>
+          <linearGradient id="bg1" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#7c4dff"/><stop offset="0.55" stop-color="#22d3ee"/><stop offset="1" stop-color="#ff3d81"/>
+          </linearGradient>
+        </defs>
+        <path d="M18.6 2 6 18.2h7.1L12.3 30 26 12.6h-7.6L18.6 2Z" fill="url(#bg1)"/>
+      </svg>
+    </span>
+    <span class="brand-word">BEAM</span>
+  </a>
+  <div class="topbar-right">
+    <button class="chip chip-ghost" id="installBtn" hidden>
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+      Install for offline
+    </button>
+    <span class="chip" id="netChip" title="Connection status">
+      <span class="dot" id="netDot"></span><span id="netText">P2P engine ready</span>
+    </span>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============ HOME ============ -->
+  <section class="screen active" id="s-home">
+    <div class="hero">
+      <span class="eyebrow">no signup · no cloud · no upload limit</span>
+      <h1>Send any file<br><span class="grad">device to device.</span></h1>
+      <p class="lede">BEAM links two devices directly and pushes your files across the shortest possible path — encrypted end to end, never touching a server, no account, no app store.</p>
+    </div>
+
+    <div class="choices">
+      <button class="choice" id="goSend">
+        <span class="choice-glow"></span>
+        <span class="choice-icon">
+          <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="m5 12 7-7 7 7"/><path d="M5 21h14"/></svg>
+        </span>
+        <span class="choice-title">Send files</span>
+        <span class="choice-sub">Start a link and share the code</span>
+        <span class="choice-arrow">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </span>
+      </button>
+
+      <button class="choice" id="goReceive">
+        <span class="choice-glow pink"></span>
+        <span class="choice-icon pink">
+          <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m5 12 7 7 7-7"/><path d="M5 3h14"/></svg>
+        </span>
+        <span class="choice-title">Receive files</span>
+        <span class="choice-sub">Enter a code or scan a QR</span>
+        <span class="choice-arrow">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </span>
+      </button>
+    </div>
+
+    <div class="features">
+      <div class="feature">
+        <span class="f-ic">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10.5" width="16" height="10" rx="2.5"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/></svg>
+        </span>
+        <div><b>End-to-end encrypted</b><span>DTLS-secured peer link. The relay never sees your bytes.</span></div>
+      </div>
+      <div class="feature">
+        <span class="f-ic cyan">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/></svg>
+        </span>
+        <div><b>Real speed</b><span>Direct link, 64 KB frames, no server hop — hundreds of MB in a minute.</span></div>
+      </div>
+      <div class="feature">
+        <span class="f-ic pink">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="18.4" r="1.5"/><path d="M8.4 14.6a5.2 5.2 0 0 1 7.2 0"/><path d="M5.4 11.4a9.6 9.6 0 0 1 13.2 0"/></svg>
+        </span>
+        <div><b>Works with zero internet</b><span>Install once, then pair with a QR code over any hotspot or LAN — no data plan.</span></div>
+      </div>
+    </div>
+
+    <div class="how">
+      <h2>How a beam works</h2>
+      <ol>
+        <li><span class="n">1</span><div><b>Open Send on one device</b><span>You get a 6-character code and a QR.</span></div></li>
+        <li><span class="n">2</span><div><b>Open Receive on the other</b><span>Type the code or scan it. Devices negotiate a direct link.</span></div></li>
+        <li><span class="n">3</span><div><b>Drop your files</b><span>Both devices can push files at once. Watch them land.</span></div></li>
+      </ol>
+    </div>
+    <p class="fineprint">Bluetooth can't carry files between two browsers — the browser sandbox forbids it. BEAM uses the direct peer-to-peer channel instead, which is 50–200× faster. For literally radio-only transfers with no network of any kind, see the bundled Android Wi-Fi Direct build in <code>/android</code>.</p>
+  </section>
+
+  <!-- ============ SEND ============ -->
+  <section class="screen" id="s-send">
+    <div class="screen-head">
+      <button class="back" data-nav="home" aria-label="Back">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+      </button>
+      <div><h2>Send files</h2><p class="muted">Pick how the two devices should find each other.</p></div>
+    </div>
+
+    <div class="modepick" id="modePick">
+      <button class="mode-card" data-mode="online">
+        <span class="mode-badge">fastest</span>
+        <span class="mode-title">Live code</span>
+        <span class="mode-sub">Both devices online (or on the same Wi-Fi / hotspot). One 6-digit code and you're linked instantly.</span>
+      </button>
+      <button class="mode-card" data-mode="offline">
+        <span class="mode-badge violet">no internet</span>
+        <span class="mode-title">Offline QR</span>
+        <span class="mode-sub">Zero internet. The two devices swap pairing tickets by QR or copy-paste over a local link — phone hotspot counts.</span>
+      </button>
+    </div>
+
+  </section>
+
+  <!-- ============ PAIR ============ -->
+  <section class="screen" id="s-pair">
+    <div class="screen-head">
+      <button class="back" data-nav="home" aria-label="Back">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+      </button>
+      <div><h2>Pairing</h2><p class="muted" id="pairSub">Getting the two devices introduced.</p></div>
+    </div>
+
+    <div class="pair" id="pairModePanel" hidden>
+      <!-- online -->
+      <div class="pair-online" id="pairOnline" hidden>
+        <div class="code-box">
+          <span class="pair-label">Your code — the other device types this</span>
+          <div class="code-show" id="codeShow">
+            <span class="code-chunk"></span><span class="code-dash">–</span><span class="code-chunk"></span>
+          </div>
+          <div class="row">
+            <button class="btn btn-ghost" id="copyCode">Copy code</button>
+            <button class="btn btn-ghost" id="copyLink">Copy link</button>
+            <button class="btn btn-ghost" id="showQr">Show QR</button>
+          </div>
+        </div>
+        <div class="radar"><span></span><span></span><span></span><div class="radar-core"></div></div>
+        <p class="muted center" id="pairStatus">Waiting for the other device to join…</p>
+      </div>
+
+      <!-- offline -->
+      <div class="pair-offline" id="pairOffline" hidden>
+        <div class="step-block" id="offStep1">
+          <span class="pair-label">Step 1 — show this to the other device</span>
+          <canvas id="offQr" class="qr-canvas" width="640" height="640"></canvas>
+          <div class="row">
+            <button class="btn btn-ghost" id="showTicket">Show ticket text</button>
+            <button class="btn btn-ghost" id="copyTicket">Copy ticket</button>
+          </div>
+        </div>
+        <div class="step-block" id="offStep2" hidden>
+          <span class="pair-label">Step 2 — scan or paste their answer</span>
+          <div class="row">
+            <button class="btn btn-primary" id="offScan">Scan answer QR</button>
+            <button class="btn btn-ghost" id="offPaste">Paste text</button>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-quiet" data-nav="home">Cancel</button>
+    </div>
+  </section>
+
+  <!-- ============ RECEIVE ============ -->
+  <section class="screen" id="s-receive">
+    <div class="screen-head">
+      <button class="back" data-nav="home" aria-label="Back">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+      </button>
+      <div><h2>Receive files</h2><p class="muted">Type the 6-character code from the sending device.</p></div>
+    </div>
+
+    <div class="entry">
+      <div class="code-input" id="codeInput" role="group" aria-label="Pairing code">
+        <input inputmode="text" autocapitalize="characters" autocomplete="off" spellcheck="false" maxlength="1" />
+        <input inputmode="text" autocapitalize="characters" autocomplete="off" spellcheck="false" maxlength="1" />
+        <input inputmode="text" autocapitalize="characters" autocomplete="off" spellcheck="false" maxlength="1" />
+        <span class="code-gap"></span>
+        <input inputmode="text" autocapitalize="characters" autocomplete="off" spellcheck="false" maxlength="1" />
+        <input inputmode="text" autocapitalize="characters" autocomplete="off" spellcheck="false" maxlength="1" />
+        <input inputmode="text" autocapitalize="characters" autocomplete="off" spellcheck="false" maxlength="1" />
+      </div>
+      <button class="btn btn-primary btn-lg" id="joinBtn">Connect</button>
+      <div class="or">or</div>
+      <div class="row">
+        <button class="btn btn-ghost" id="rxScan">Scan QR</button>
+        <button class="btn btn-ghost" id="rxOffline">Offline ticket</button>
+      </div>
+      <p class="muted center" id="rxStatus"></p>
+    </div>
+    <p class="fineprint">Same Wi-Fi, phone hotspot, or anywhere on the internet — BEAM finds the shortest path between the two devices on its own.</p>
+  </section>
+
+  <!-- ============ SESSION ============ -->
+  <section class="screen" id="s-session">
+    <div class="linkstrip">
+      <div class="device" id="devMe">
+        <span class="dev-icon" id="meIcon"></span>
+        <span class="dev-meta"><b id="meName">This device</b><span id="meRole">sender</span></span>
+      </div>
+      <div class="beam" id="beam">
+        <svg viewBox="0 0 120 24" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="beamGrad" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#7c4dff"/><stop offset="0.5" stop-color="#22d3ee"/><stop offset="1" stop-color="#ff3d81"/>
+            </linearGradient>
+          </defs>
+          <path class="beam-line" d="M2 12 H118" stroke="url(#beamGrad)" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <circle class="beam-dot" r="3.4" fill="#bff6ff"/>
+        </svg>
+      </div>
+      <div class="device right" id="devPeer">
+        <span class="dev-icon" id="peerIcon"></span>
+        <span class="dev-meta"><b id="peerName">Waiting…</b><span id="peerRole">receiver</span></span>
+      </div>
+    </div>
+    <div class="session-stats" id="sessionStats" hidden>
+      <div><span class="stat-k">status</span><b id="statState">live</b></div>
+      <div><span class="stat-k">link</span><b id="statLink">direct</b></div>
+      <div><span class="stat-k">sent</span><b id="statUp">0 B</b></div>
+      <div><span class="stat-k">received</span><b id="statDown">0 B</b></div>
+    </div>
+
+    <div class="drop" id="drop">
+      <input type="file" id="fileInput" multiple hidden />
+      <span class="drop-icon">
+        <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4"/><path d="m7 9 5-5 5 5"/><path d="M4 17v2.5A1.5 1.5 0 0 0 5.5 21h13a1.5 1.5 0 0 0 1.5-1.5V17"/></svg>
+      </span>
+      <b>Drop files here</b>
+      <span class="muted">or tap to browse — photos, video, zip, anything. No size limit.</span>
+    </div>
+
+    <div class="queue-wrap">
+      <div class="queue-head">
+        <h3 id="queueTitle">Files</h3>
+        <div class="row tight">
+          <button class="btn btn-quiet sm" id="saveAll" hidden>Save all</button>
+          <button class="btn btn-quiet sm" id="clearDone" hidden>Clear done</button>
+        </div>
+      </div>
+      <div class="queue" id="queue"></div>
+      <p class="empty" id="queueEmpty">Nothing here yet. Senders can drop files the second the link turns green.</p>
+    </div>
+
+    <details class="logwrap">
+      <summary>Connection details</summary>
+      <pre class="log" id="log"></pre>
+    </details>
+    <button class="btn btn-quiet" id="leaveBtn">End session</button>
+  </section>
+</main>
+
+<!-- ============ MODALS ============ -->
+<div class="modal" id="modalScan" hidden>
+  <div class="modal-card">
+    <h3>Scan QR</h3>
+    <div class="scanner" id="scanner">
+      <video id="scanVideo" playsinline muted></video>
+      <canvas id="scanCanvas" hidden></canvas>
+      <div class="scan-frame"><span class="scan-line"></span></div>
+    </div>
+    <p class="muted center" id="scanHint">Point at the other device's QR code.</p>
+    <div class="row"><button class="btn btn-ghost" data-close>Cancel</button></div>
+  </div>
+</div>
+
+<div class="modal" id="modalQr" hidden>
+  <div class="modal-card">
+    <h3>Scan to join</h3>
+    <div class="qr-holder"><canvas id="joinQr" width="640" height="640"></canvas></div>
+    <p class="muted center" id="qrLinkText"></p>
+    <div class="row"><button class="btn btn-ghost" data-close>Close</button></div>
+  </div>
+</div>
+
+<div class="modal" id="modalText" hidden>
+  <div class="modal-card">
+    <h3 id="textTitle">Ticket</h3>
+    <textarea id="textArea" class="textarea" rows="8" spellcheck="false"></textarea>
+    <div class="row">
+      <button class="btn btn-primary" id="textConfirm">Use this</button>
+      <button class="btn btn-ghost" data-close>Cancel</button>
+    </div>
+  </div>
+</div>
+
+<div id="toasts"></div>
+<div class="fx" id="fx" aria-hidden="true"></div>
+
+<script src="/vendor/qrcode.js"></script>
+<script src="/vendor/jsQR.js"></script>
+<script src="/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+{
+  "name": "beam",
+  "version": "1.0.0",
+  "description": "BEAM — send files device to device. No signup, no cloud, no upload limit, no database.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node test/e2e.js",
+    "shots": "node test/shots.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "playwright": "1.49.1"
+  },
+  "license": "MIT",
+  "private": true
+}

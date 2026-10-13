@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">BEAM</string>
+    <string name="host">Host a link</string>
+    <string name="join">Join a link</string>
+    <string name="send">Send files</string>
+    <string name="close">Close link</string>
+    <string name="idle">Idle</string>
+    <string name="ready">Ready</string>
+</resources>

@@ -1,0 +1,10 @@
+<resources>
+    <color name="bg">#05060A</color>
+    <color name="surface">#10131F</color>
+    <color name="violet">#7C4DFF</color>
+    <color name="cyan">#22D3EE</color>
+    <color name="pink">#FF3D81</color>
+    <color name="ink">#EEF1FA</color>
+    <color name="muted">#8B93A9</color>
+    <color name="ok">#2EE6A8</color>
+</resources>
